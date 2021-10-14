@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-    import { login, getUserInfo } from "@/api/login"; // 导入登录和获取用户信息的方法
+    import {login, getUserInfo} from "@/api/login"; // 导入登录和获取用户信息的方法
     export default {
         data() {
             return {
@@ -26,12 +26,12 @@
                 },
                 rules: {
                     username: [
-                        { required: true, message: "用户名不能为空", trigger: "blur" },
-                        { min: 3, max: 10, message: "用户名3-5位", trigger: "blur" }
+                        {required: true, message: "用户名不能为空", trigger: "blur"},
+                        {min: 3, max: 10, message: "用户名3-5位", trigger: "blur"}
                     ],
                     password: [
-                        { required: true, message: "密码不能为空", trigger: "blur" },
-                        { min: 3, max: 10, message: "密码3-5位", trigger: "blur" }
+                        {required: true, message: "密码不能为空", trigger: "blur"},
+                        {min: 3, max: 10, message: "密码3-5位", trigger: "blur"}
                     ]
                 }
             };
@@ -69,7 +69,7 @@
                                         });
                                     }
                                 });
-                            }else {
+                            } else {
                                 // 未通过，弹出警告
                                 // 使用elementui的消息提示
                                 this.$message({

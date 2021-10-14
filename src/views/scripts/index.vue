@@ -24,9 +24,9 @@
             <!-- 操作开始，scope 可以获取行数据 ，scope.row.id 获取该行数据的 id值-->
             <el-table-column label="操作" width="150">
                 <template slot-scope="scope">
-                    <el-button size="mini" >编辑</el-button>
+                    <el-button size="mini">编辑</el-button>
                     <!-- 根据后端返回该行的id进行编辑和删除 -->
-                    <el-button size="mini" type="danger"  >删除</el-button>
+                    <el-button size="mini" type="danger">删除</el-button>
                 </template>
             </el-table-column>
             <!-- 操作结束 -->
@@ -59,43 +59,45 @@
 
 <script>
     import scriptApi from "@/api/scripts"
-export default {
-    data() {
-        return {
-            scriptlist: [],  // 数据传给list
-            total: 0,
-            currentPage: 1, // 当前页码
-            pageSize: 10, // 每页显示的数据条数
-            scriptVO: {
-                name: '',
-                content: '',
+
+    export default {
+        data() {
+            return {
+                scriptlist: [],  // 数据传给list
+                total: 0,
+                currentPage: 1, // 当前页码
+                pageSize: 10, // 每页显示的数据条数
+                scriptVO: {
+                    name: '',
+                },
+            };
+        },
+        created() {
+
+            // 调接口请求数据，将调接口定义一个方法，在created里调用这个方法
+            this.fetchData()
+        },
+        methods: {
+            fetchData() {
+
+                // this.pageSize,this.currenPage 分页的条数和页码，要this.
+                scriptApi.getscriptList(this.pageSize, this.currentPage, this.scriptVO).then(response => {
+                    alert("运行到这")
+                    const res = response.data
+                    this.scriptslist = res.data.records  // 将返回数据的data赋值给list
+                    this.total = res.data.total  // 将接口返回的total 覆盖 data里的total
+                    console.log(res)
+                })
+
+
             },
-        };
-    },
-    created() {
-
-        // 调接口请求数据，将调接口定义一个方法，在created里调用这个方法
-        this.fetchData()
-    },
-    methods: {
-        fetchData() {
-            // this.pageSize,this.currenPage 分页的条数和页码，要this.
-            scriptApi.getscriptList(this.pageSize, this.currentPage, this.scriptVO).then(response => {
-                const res = response.data
-                this.scriptslist = res.data.records  // 将返回数据的data赋值给list
-                this.total = res.data.total  // 将接口返回的total 覆盖 data里的total
-                console.log(res)
-            })
-
-
-        },
-        // 重置功能,element ui 提供的功能
-        resetForm(formName) {
-            // 重置要看 el-form-item 组件元素的 prop 上是否指定了字段名，指定了才会重置生效
-            this.$refs[formName].resetFields();
-        },
+            // 重置功能,element ui 提供的功能
+            resetForm(formName) {
+                // 重置要看 el-form-item 组件元素的 prop 上是否指定了字段名，指定了才会重置生效
+                this.$refs[formName].resetFields();
+            },
+        }
     }
-}
 
 
 </script>

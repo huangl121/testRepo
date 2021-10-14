@@ -15,7 +15,7 @@
 
     // 导入子组件，缩写格式 AppHeader: AppHeader
     export default {
-        components: { AppHeader, AppNavbar, AppMain }  // 有s
+        components: {AppHeader, AppNavbar, AppMain}  // 有s
     };
 </script>
 
@@ -34,7 +34,7 @@
     .navbar {
         position: absolute;
         width: 230px;
-        top: 60px;  /* 距离上面60像素 */
+        top: 60px; /* 距离上面60像素 */
         left: 0px;
         bottom: 0px;
         overflow-y: auto; /* 当内容过多时y轴出现滚动条 */
@@ -47,7 +47,7 @@
         top: 60px;
         left: 230px;
         bottom: 0px;
-        right: 0px;  /* 距离右边0像素 */
+        right: 0px; /* 距离右边0像素 */
         padding: 10px;
         overflow-y: auto; /* 当内容过多时y轴出现滚动条 */
         /* background-color: red; */

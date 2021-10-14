@@ -2,7 +2,7 @@
     <!-- logo和文字 -->
     <div class="header">
         <a href="#/">   <!-- 点击进入首页 -->
-            <img class="logo" src="@/assets/cuclogo.png" width="25px" />
+            <img class="logo" src="@/assets/cuclogo.png" width="25px"/>
             <span class="company">技术组-数据工具平台</span>
         </a>
         <!-- logo和文字结束 -->
@@ -33,7 +33,7 @@
     import {logout} from '@/api/login' // 导入退出系统接口
     export default {
         methods: {
-            handleCommand(command){
+            handleCommand(command) {
                 switch (command) {
                     case 'edit':
                         console.log('修改密码')
@@ -45,15 +45,15 @@
                         const token = localStorage.getItem('zz-token')
 
                         // 调用退出登录接口
-                        logout(token).then(response =>{
+                        logout(token).then(response => {
                             const res = response.data
-                            if (res.success){
+                            if (res.success) {
                                 // 退出成功，清除本地数据
                                 localStorage.removeItem('zz-token')
 
                                 // 回到登录页面，重新登录
                                 this.$router.push('/login')
-                            }else{
+                            } else {
                                 // 退出失败
                                 this.$message({
                                     showClose: true, // 可以关闭
@@ -88,12 +88,13 @@
     }
 
     /* 下拉菜单 */
-    .el-dropdown{
+    .el-dropdown {
         float: right; /* 浮动在右边 */
         margin-right: 40px; /* 靠右40px */
     }
+
     /* 系统管理 */
-    .el-dropdown-link{
+    .el-dropdown-link {
         color: white;
         cursor: pointer; /* 鼠标放上去是手的形状 */
     }

@@ -10,9 +10,9 @@
                 <el-input v-model="searchMap.dbNmae" placeholder="数据源名称" style="width: 200px"></el-input>
             </el-form-item>
             <!-- prop重置用 -->
-<!--            <el-form-item prop="dbType">-->
-<!--                <el-input v-model="searchMap.dbType" placeholder="数据源类型" style="width: 200px"></el-input>-->
-<!--            </el-form-item>-->
+            <!--            <el-form-item prop="dbType">-->
+            <!--                <el-input v-model="searchMap.dbType" placeholder="数据源类型" style="width: 200px"></el-input>-->
+            <!--            </el-form-item>-->
             <el-form-item prop="dbType">
                 <el-select v-model="searchMap.dbType" placeholder="数据源类型" style="width: 120px">
                     <!-- 不要忘记 payTypeOptions 绑定到data中 -->
@@ -26,16 +26,16 @@
             </el-form-item>
 
             <!-- 日期搜索框 -->
-<!--            <el-form-item prop="member_birthday">-->
-<!--                &lt;!&ndash; value-format 是指定绑定值的格式 &ndash;&gt;-->
-<!--                <el-date-picker-->
-<!--                        style="width: 200px"-->
-<!--                        value-format="yyyy-MM-dd"-->
-<!--                        v-model="searchMap.member_birthday"-->
-<!--                        type="date"-->
-<!--                        placeholder="出生日期"-->
-<!--                ></el-date-picker>-->
-<!--            </el-form-item>-->
+            <!--            <el-form-item prop="member_birthday">-->
+            <!--                &lt;!&ndash; value-format 是指定绑定值的格式 &ndash;&gt;-->
+            <!--                <el-date-picker-->
+            <!--                        style="width: 200px"-->
+            <!--                        value-format="yyyy-MM-dd"-->
+            <!--                        v-model="searchMap.member_birthday"-->
+            <!--                        type="date"-->
+            <!--                        placeholder="出生日期"-->
+            <!--                ></el-date-picker>-->
+            <!--            </el-form-item>-->
             <!-- 日期搜索框结束 -->
 
             <el-form-item>
@@ -121,10 +121,10 @@
                     style="width: 400px;"
                     :model="pojo"
             >
-                <el-form-item label="会员卡号"  prop="member_card">
+                <el-form-item label="会员卡号" prop="member_card">
                     <el-input v-model="pojo.member_card" placeholder="请输入会员卡号"></el-input>
                 </el-form-item>
-                <el-form-item label="会员姓名"  prop="member_name">
+                <el-form-item label="会员姓名" prop="member_name">
                     <el-input v-model="pojo.member_name" placeholder="请输入会员姓名"></el-input>
                 </el-form-item>
                 <el-form-item label="会员生日" prop="member_birthday">
@@ -140,7 +140,7 @@
                 <el-form-item label="手机号码" prop="phone_number">
                     <el-input v-model="pojo.phone_number" placeholder="请输入手机号码"></el-input>
                 </el-form-item>
-                <el-form-item label="开卡金额"  prop="card_money">
+                <el-form-item label="开卡金额" prop="card_money">
                     <el-input v-model="pojo.card_money" placeholder="请输入开卡金额"></el-input>
                 </el-form-item>
                 <el-form-item label="可用积分" prop="Available_integral">
@@ -179,22 +179,22 @@
     // 数据源类型，不能写在data里面，会报错，定义好了在下面写个 filters 方法
     // 然后在列表页面使用过滤器，接口返回的pay_type是数字，不是字符串
     const dbTypeOptions = [
-        { db_type: 1, name: "oracle" },
-        { db_type: 2, name: "mysql" },
-        { db_type: 3, name: "sql server" },
-        { db_type: 4, name: "db2" }
+        {db_type: 1, name: "oracle"},
+        {db_type: 2, name: "mysql"},
+        {db_type: 3, name: "sql server"},
+        {db_type: 4, name: "db2"}
     ];
 
 
-    export default{
-        data(){
+    export default {
+        data() {
             return {
                 list: [],  // 数据传给list
                 total: 0, // 总记录数，在接口返回数据后赋值给total
                 currentPage: 1, // 当前页码
                 pageSize: 10, // 每页显示的数据条数
                 searchMap: {
-                     // 条件查询绑定的条件值,搜索字段有两个
+                    // 条件查询绑定的条件值,搜索字段有两个
                     dbName: "",
                     dbType: ""
                 },
@@ -213,9 +213,9 @@
                 },
                 rules: {
                     // 校验规则，blur 失去焦点的时候验证，change 输入值改变的时候验证
-                    dbName: [{ required: true, message: "名称不能为空", trigger: "blur" }],
+                    dbName: [{required: true, message: "名称不能为空", trigger: "blur"}],
                     dbType: [
-                        { required: true, message: "类型不能为空", trigger: "change" }
+                        {required: true, message: "类型不能为空", trigger: "change"}
                     ]
                 }
             }
@@ -227,16 +227,16 @@
         },
 
         methods: {
-            fetchData(){
+            fetchData() {
                 // 获取token
-               // const token = localStorage.getItem('zz-token')
-               // console.log(token)
+                // const token = localStorage.getItem('zz-token')
+                // console.log(token)
                 // this.pageSize,this.currenPage 分页的条数和页码，要this.
-                dsApi.getDsList(this.pageSize,this.currentPage,this.searchMap).then( response=>{
+                dsApi.getDsList(this.pageSize, this.currentPage, this.searchMap).then(response => {
                     const res = response.data
                     this.list = res.data.data  // 将返回数据的data赋值给list
                     this.total = res.total  // 将接口返回的total 覆盖 data里的total
-                   console.log(res)
+                    console.log(res)
                 })
 
 
@@ -247,7 +247,7 @@
                 this.handleAdd();  // 要打开窗口，清除数据，直接复用handleAdd就可以了
                 // 获取token
                 const token = localStorage.getItem('zz-token')
-                dsApi.getById(id,token).then(response => {
+                dsApi.getById(id, token).then(response => {
                     const res = response.data;
                     if (res.success) {
                         this.pojo = res.data;  // 将数据赋值给pojo显示在输入框里
@@ -266,15 +266,15 @@
                     console.log('确认')
                     // 获取token
                     const token = localStorage.getItem('zz-token')
-                    dsApi.deleteById(id,token).then(response => {
+                    dsApi.deleteById(id, token).then(response => {
                         // console.log(response)
                         const res = response.data
                         // 删除成功或失败的提示信息
                         this.$message({
                             message: res.msg,
-                            type: res.success ? 'success': 'error'
+                            type: res.success ? 'success' : 'error'
                         })
-                        if(res.success) {
+                        if (res.success) {
                             // 删除成功，刷新列表数据
                             this.fetchData()
                         }
@@ -308,7 +308,7 @@
                     console.log("addData");
                     const token = localStorage.getItem('zz-token')
                     // pojo才是提交到后台的数据，不是formName
-                    dsApi.add(this.pojo,token).then(response => {
+                    dsApi.add(this.pojo, token).then(response => {
                         const res = response.data;
                         if (res.success) {
                             // 新增成功，提示语

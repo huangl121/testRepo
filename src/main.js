@@ -7,10 +7,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 
-
 // 使用element-ui
 Vue.use(ElementUI)
-Vue.use(VueAxios,axios)
+Vue.use(VueAxios, axios)
 
 // 环境配置，是否为生成环境
 // false为开发环境，Vue会提供很多警告，方便调试代码
@@ -18,6 +17,6 @@ Vue.use(VueAxios,axios)
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
 
 new Vue({
-  router,
-  render: h => h(App),
+    router,
+    render: h => h(App),
 }).$mount('#app')
